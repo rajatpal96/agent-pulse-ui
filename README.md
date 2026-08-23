@@ -38,6 +38,32 @@ npm run build
 npm start
 ```
 
+## Deployment
+
+### Deploying to Vercel
+
+#### Option 1: Using Vercel CLI
+```bash
+# 1. Install & Login to Vercel (if not already)
+npm i -g vercel
+vercel login
+
+# 2. Deploy Preview
+vercel
+
+# 3. Deploy Production
+vercel --prod
+```
+
+#### Option 2: Deploying via Vercel Web Dashboard (Git Integration)
+1. Push this repository to your GitHub/GitLab/Bitbucket.
+2. Go to [vercel.com](https://vercel.com/new) and import the repository.
+3. Vercel will automatically detect the **Next.js** framework with settings pre-configured in [vercel.json](file:///Users/batu/Downloads/agent-pulse-ui/vercel.json).
+4. Under **Environment Variables**, configure your backend endpoints:
+   - `NEXT_PUBLIC_API_BASE_URL`: URL of your AgentMeter analytics backend (e.g., `https://api.yourdomain.com`)
+   - `NEXT_PUBLIC_INGEST_BASE_URL`: URL of your telemetry ingestion backend (e.g., `https://ingest.yourdomain.com`)
+5. Click **Deploy**.
+
 ## Docker Deployment
 
 Build and run as a standalone container:
@@ -46,3 +72,4 @@ Build and run as a standalone container:
 docker build -t agent-pulse-ui .
 docker run -p 3000:3000 -e NEXT_PUBLIC_API_BASE_URL=http://your-backend-api:4000 agent-pulse-ui
 ```
+
