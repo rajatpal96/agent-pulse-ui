@@ -22,8 +22,9 @@ npm install
 ### 2. Configure Backend Endpoints
 Create or adjust `.env.local`:
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
-NEXT_PUBLIC_INGEST_BASE_URL=http://localhost:4001
+NEXT_PUBLIC_APP_URL=https://tokentrail.xyz
+NEXT_PUBLIC_API_BASE_URL=https://api.tokentrail.xyz
+NEXT_PUBLIC_INGEST_BASE_URL=https://ingest.tokentrail.xyz
 ```
 
 ### 3. Run Locally
@@ -40,7 +41,7 @@ npm start
 
 ## Deployment
 
-### Deploying to Vercel
+### Deploying to Vercel (Custom Domain: `tokentrail.xyz`)
 
 #### Option 1: Using Vercel CLI
 ```bash
@@ -59,10 +60,13 @@ vercel --prod
 1. Push this repository to your GitHub/GitLab/Bitbucket.
 2. Go to [vercel.com](https://vercel.com/new) and import the repository.
 3. Vercel will automatically detect the **Next.js** framework with settings pre-configured in [vercel.json](file:///Users/batu/Downloads/agent-pulse-ui/vercel.json).
-4. Under **Environment Variables**, configure your backend endpoints:
-   - `NEXT_PUBLIC_API_BASE_URL`: URL of your AgentMeter analytics backend (e.g., `https://api.yourdomain.com`)
-   - `NEXT_PUBLIC_INGEST_BASE_URL`: URL of your telemetry ingestion backend (e.g., `https://ingest.yourdomain.com`)
-5. Click **Deploy**.
+4. Under **Project Settings -> Domains**, attach your domain: `tokentrail.xyz` (and `www.tokentrail.xyz`).
+5. Under **Environment Variables**, configure:
+   - `NEXT_PUBLIC_APP_URL`: `https://tokentrail.xyz`
+   - `NEXT_PUBLIC_API_BASE_URL`: `https://api.tokentrail.xyz`
+   - `NEXT_PUBLIC_INGEST_BASE_URL`: `https://ingest.tokentrail.xyz`
+6. Click **Deploy**.
+
 
 ## Docker Deployment
 
