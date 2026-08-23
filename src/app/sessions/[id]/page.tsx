@@ -18,6 +18,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 
 export default function SessionDetailPage() {
   const params = useParams();
@@ -28,7 +29,7 @@ export default function SessionDetailPage() {
   const fetchSession = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/v1/sessions/${sessionId}`);
+      const res = await apiFetch(`/api/v1/sessions/${sessionId}`);
       if (res.ok) {
         const json = await res.json();
         setData(json);

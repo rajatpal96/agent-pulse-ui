@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../components/Navbar';
 import { Layers, Activity, Clock, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 import { formatNumber } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 
 export default function McpPage() {
   const [range, setRange] = useState('30d');
@@ -13,7 +14,7 @@ export default function McpPage() {
   const fetchMcp = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/v1/mcp/analytics?range=${range}`);
+      const res = await apiFetch(`/api/v1/mcp/analytics?range=${range}`);
       if (res.ok) {
         const json = await res.json();
         setData(json);

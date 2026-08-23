@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../components/Navbar';
 import { Key, Shield, Eye, Copy, Check, Plus, Database, Sparkles, Layers, Lock } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 
 export default function SettingsPage() {
   const [keys, setKeys] = useState<any[]>([]);
@@ -22,8 +23,8 @@ export default function SettingsPage() {
   const fetchKeysAndPricing = async () => {
     try {
       const [kRes, pRes] = await Promise.all([
-        fetch('/api/v1/api-keys'),
-        fetch('/api/v1/pricing'),
+        apiFetch('/api/v1/api-keys'),
+        apiFetch('/api/v1/pricing'),
       ]);
       if (kRes.ok) {
         const j = await kRes.json();
@@ -45,7 +46,7 @@ export default function SettingsPage() {
   const handleCreateKey = async () => {
     if (!keyName) return;
     try {
-      const res = await fetch('/api/v1/api-keys', {
+      const res = await apiFetch('/api/v1/api-keys', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: keyName }),
@@ -63,7 +64,7 @@ export default function SettingsPage() {
 
   const handleGenerateMcpToken = async () => {
     try {
-      const res = await fetch('/api/v1/oauth/token', {
+      const res = await apiFetch('/api/v1/oauth/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

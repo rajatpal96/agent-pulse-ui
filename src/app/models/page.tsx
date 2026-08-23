@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../components/Navbar';
 import { Cpu, Zap, ShieldCheck, TrendingUp, Sparkles } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 
 export default function ModelsPage() {
   const [range, setRange] = useState('30d');
@@ -13,7 +14,7 @@ export default function ModelsPage() {
   const fetchModels = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/v1/analytics/usage/by-model?range=${range}`);
+      const res = await apiFetch(`/api/v1/analytics/usage/by-model?range=${range}`);
       if (res.ok) {
         const json = await res.json();
         setModels(json.models || []);

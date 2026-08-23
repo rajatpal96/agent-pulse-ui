@@ -19,6 +19,7 @@ import {
   Layers,
 } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 import Link from 'next/link';
 
 export default function OverviewPage() {
@@ -30,7 +31,7 @@ export default function OverviewPage() {
   const fetchOverview = async () => {
     try {
       setIsRefreshing(true);
-      const res = await fetch(`/api/v1/analytics/overview?range=${range}`);
+      const res = await apiFetch(`/api/v1/analytics/overview?range=${range}`);
       if (res.ok) {
         const json = await res.json();
         setData(json);

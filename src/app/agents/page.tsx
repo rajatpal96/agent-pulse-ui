@@ -16,6 +16,7 @@ import {
   ShieldAlert,
 } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 
 const AGENT_BADGES: Record<string, { label: string; icon: any; gradient: string; tag: string }> = {
   'claude-code': {
@@ -58,7 +59,7 @@ export default function AgentsPage() {
   const fetchAgents = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/v1/analytics/usage/by-agent?range=${range}`);
+      const res = await apiFetch(`/api/v1/analytics/usage/by-agent?range=${range}`);
       if (res.ok) {
         const json = await res.json();
         setAgents(json.agents || []);

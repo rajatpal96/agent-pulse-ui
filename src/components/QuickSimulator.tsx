@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Play, Sparkles, CheckCircle2, RefreshCw } from 'lucide-react';
+import { apiFetch } from '@/lib/api';
 
 interface QuickSimulatorProps {
   onEventSent?: () => void;
@@ -45,7 +46,7 @@ export function QuickSimulator({ onEventSent }: QuickSimulatorProps) {
     };
 
     try {
-      const res = await fetch('/ingest/v1/events', {
+      const res = await apiFetch('/ingest/v1/events', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

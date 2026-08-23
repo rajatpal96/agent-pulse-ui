@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../components/Navbar';
 import { PiggyBank, Bell, AlertTriangle, ShieldCheck, Plus, CheckCircle2 } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 
 export default function BudgetsPage() {
   const [budget, setBudget] = useState<any>(null);
@@ -14,8 +15,8 @@ export default function BudgetsPage() {
   const fetchBudgetAndAlerts = async () => {
     try {
       const [bRes, aRes] = await Promise.all([
-        fetch('/api/v1/budgets'),
-        fetch('/api/v1/alerts'),
+        apiFetch('/api/v1/budgets'),
+        apiFetch('/api/v1/alerts'),
       ]);
       if (bRes.ok) setBudget(await bRes.json());
       if (aRes.ok) setAlerts(await aRes.json());
@@ -31,7 +32,7 @@ export default function BudgetsPage() {
   const handleUpdateBudget = async () => {
     if (!newLimit) return;
     try {
-      const res = await fetch('/api/v1/budgets', {
+      const res = await apiFetch('/api/v1/budgets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ monthlyLimitUsd: Number(newLimit), alertThresholdPercent: 80 }),

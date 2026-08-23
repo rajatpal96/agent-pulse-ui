@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Navbar } from '../../components/Navbar';
 import { Terminal, Search, Filter, Clock, Cpu, Coins, ChevronRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
+import { apiFetch } from '@/lib/api';
 
 export default function SessionsPage() {
   const [range, setRange] = useState('30d');
@@ -19,7 +20,7 @@ export default function SessionsPage() {
       const url = selectedAgent !== 'all'
         ? `/api/v1/sessions?agent=${selectedAgent}`
         : `/api/v1/sessions`;
-      const res = await fetch(url);
+      const res = await apiFetch(url);
       if (res.ok) {
         const json = await res.json();
         setSessions(json.sessions || []);
