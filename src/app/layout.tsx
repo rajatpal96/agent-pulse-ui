@@ -1,5 +1,6 @@
 import './globals.css';
 import { Sidebar } from '../components/Sidebar';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://tokentrail.xyz'),
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 flex flex-col min-w-0 overflow-y-auto min-h-screen">
           {children}
         </main>
+        <Analytics />
       </body>
     </html>
   );
