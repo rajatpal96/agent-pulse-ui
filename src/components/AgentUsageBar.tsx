@@ -34,38 +34,37 @@ const AGENT_META: Record<string, { label: string; icon: any; color: string; bg: 
   'gemini-antigravity': {
     label: 'Gemini / Antigravity',
     icon: Sparkles,
-    color: 'text-indigo-400',
-    bg: 'bg-indigo-500/10',
-    border: 'border-indigo-500/30',
-  },
-  codex: {
-    label: 'Codex / OpenAI',
-    icon: Bot,
     color: 'text-emerald-400',
     bg: 'bg-emerald-500/10',
     border: 'border-emerald-500/30',
   },
+  codex: {
+    label: 'Codex / OpenAI',
+    icon: Bot,
+    color: 'text-teal-400',
+    bg: 'bg-teal-500/10',
+    border: 'border-teal-500/30',
+  },
   grok: {
     label: 'xAI Grok',
     icon: Flame,
-    color: 'text-rose-400',
-    bg: 'bg-rose-500/10',
-    border: 'border-rose-500/30',
+    color: 'text-lime-400',
+    bg: 'bg-lime-500/10',
+    border: 'border-lime-500/30',
   },
 };
 
 export function AgentUsageBar({ agents }: AgentUsageBarProps) {
   if (!agents || agents.length === 0) {
-    return <div className="text-xs text-slate-500 py-4">No agent activity registered.</div>;
+    return <div className="text-xs text-emerald-400/60 py-4">No agent activity registered.</div>;
   }
 
   return (
     <div className="space-y-4">
       {/* Progress Bar */}
-      <div className="h-3 w-full rounded-full bg-slate-900 overflow-hidden flex p-0.5 border border-slate-800">
+      <div className="h-3 w-full rounded-full bg-slate-950 overflow-hidden flex p-0.5 border border-emerald-500/20">
         {agents.map((agent, idx) => {
-          const meta = AGENT_META[agent.agentName] || { bg: 'bg-slate-500' };
-          const bgColors = ['bg-amber-400', 'bg-cyan-400', 'bg-indigo-500', 'bg-emerald-400', 'bg-rose-400'];
+          const bgColors = ['bg-emerald-500', 'bg-teal-400', 'bg-cyan-400', 'bg-lime-400', 'bg-amber-400'];
           const colorClass = bgColors[idx % bgColors.length];
 
           return (
@@ -85,16 +84,16 @@ export function AgentUsageBar({ agents }: AgentUsageBarProps) {
           const meta = AGENT_META[agent.agentName] || {
             label: agent.agentName,
             icon: Bot,
-            color: 'text-slate-300',
-            bg: 'bg-slate-800/40',
-            border: 'border-slate-700',
+            color: 'text-emerald-300',
+            bg: 'bg-emerald-950/40',
+            border: 'border-emerald-500/20',
           };
           const Icon = meta.icon;
 
           return (
             <div
               key={agent.agentName}
-              className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-slate-700 transition-all text-xs"
+              className="flex items-center justify-between p-2.5 rounded-xl bg-[#0c1410] border border-emerald-500/15 hover:border-emerald-500/30 transition-all text-xs"
             >
               <div className="flex items-center gap-2.5">
                 <div className={`p-1.5 rounded-lg ${meta.bg} ${meta.color} border ${meta.border}`}>
@@ -102,7 +101,7 @@ export function AgentUsageBar({ agents }: AgentUsageBarProps) {
                 </div>
                 <div>
                   <div className="font-semibold text-slate-200">{meta.label}</div>
-                  <div className="text-[11px] text-slate-500 font-mono">
+                  <div className="text-[11px] text-slate-400 font-mono">
                     {formatNumber(agent.requestCount)} reqs • {formatNumber(agent.totalTokens)} tokens
                   </div>
                 </div>

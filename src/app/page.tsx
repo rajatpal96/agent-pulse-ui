@@ -62,7 +62,7 @@ export default function OverviewPage() {
           <div>
             <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
               AI Agent Fleet Observability
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
                 ● Live Fleet Active
               </span>
             </h2>
@@ -79,34 +79,31 @@ export default function OverviewPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <MetricCard
             title="Total Spend (USD)"
-            value={data ? formatCurrency(data.totalCostUsd) : '$0.00'}
-            subtitle={`Past ${range.toUpperCase()} consumption`}
-            trend={{ value: '+14.2% vs prev', isPositive: false }}
+            value={data ? formatCurrency(data.totalCostUsd || 0) : '$0.00'}
+            subtitle={`Past ${range.toUpperCase()} billing consumption`}
             icon={Coins}
             color="emerald"
           />
           <MetricCard
             title="Tokens Processed"
-            value={data ? formatNumber(data.totalTokens) : '0'}
+            value={data ? formatNumber(data.totalTokens || 0) : '0'}
             subtitle="Prompts, outputs & cache"
-            trend={{ value: '+28.5%', isPositive: true }}
             icon={Cpu}
-            color="indigo"
+            color="mint"
           />
           <MetricCard
             title="AI Invocations"
-            value={data ? formatNumber(data.totalRequests) : '0'}
+            value={data ? formatNumber(data.totalRequests || 0) : '0'}
             subtitle="Agent completions & edits"
-            trend={{ value: '+8.1%', isPositive: true }}
             icon={Activity}
-            color="cyan"
+            color="teal"
           />
           <MetricCard
             title="Active Agents"
-            value={data ? data.activeAgentsCount : 5}
+            value={data ? (data.activeAgentsCount ?? (data.usageByAgent?.length || 0)) : 0}
             subtitle="Heterogeneous coding tools"
             icon={Bot}
-            color="purple"
+            color="lime"
           />
         </div>
 
@@ -117,7 +114,7 @@ export default function OverviewPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-indigo-400" />
+                  <TrendingUp className="w-4 h-4 text-emerald-400" />
                   Token Volume & Spend Trajectory
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -132,10 +129,10 @@ export default function OverviewPage() {
           <div className="p-6 rounded-2xl glass-panel space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <Bot className="w-4 h-4 text-amber-400" />
+                <Bot className="w-4 h-4 text-emerald-400" />
                 Fleet Share by Agent
               </h3>
-              <Link href="/agents" className="text-xs text-indigo-400 hover:text-indigo-300 font-medium">
+              <Link href="/agents" className="text-xs text-emerald-400 hover:text-emerald-300 font-medium">
                 Deep Dive →
               </Link>
             </div>
@@ -149,38 +146,44 @@ export default function OverviewPage() {
           <div className="p-6 rounded-2xl glass-panel space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <FolderGit2 className="w-4 h-4 text-cyan-400" />
+                <FolderGit2 className="w-4 h-4 text-teal-400" />
                 Cost by Project & Repository
               </h3>
               <span className="text-xs text-slate-400">Budget Limit: $250/repo</span>
             </div>
 
             <div className="space-y-3">
-              {(data?.costByProject || []).map((proj: any) => {
-                const percent = Math.min(100, Math.round((proj.totalCostUsd / (proj.budgetUsd || 250)) * 100));
-                return (
-                  <div key={proj.projectId} className="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
-                    <div className="flex justify-between text-xs mb-1.5 font-medium">
-                      <span className="text-slate-200 font-mono flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                        {proj.projectId}
-                      </span>
-                      <span className="text-emerald-400 font-mono">
-                        {formatCurrency(proj.totalCostUsd)}{' '}
-                        <span className="text-slate-500 font-normal">/ ${proj.budgetUsd || 250}</span>
-                      </span>
+              {(!data?.costByProject || data.costByProject.length === 0) ? (
+                <div className="text-xs text-emerald-400/60 py-6 text-center font-mono">
+                  No project telemetry recorded yet.
+                </div>
+              ) : (
+                data.costByProject.map((proj: any) => {
+                  const percent = Math.min(100, Math.round(((proj.totalCostUsd || 0) / (proj.budgetUsd || 250)) * 100));
+                  return (
+                    <div key={proj.projectId} className="p-3 rounded-xl bg-[#0c1410] border border-emerald-500/15">
+                      <div className="flex justify-between text-xs mb-1.5 font-medium">
+                        <span className="text-slate-200 font-mono flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                          {proj.projectId}
+                        </span>
+                        <span className="text-emerald-400 font-mono">
+                          {formatCurrency(proj.totalCostUsd || 0)}{' '}
+                          <span className="text-slate-500 font-normal">/ ${proj.budgetUsd || 250}</span>
+                        </span>
+                      </div>
+                      <div className="h-2 w-full rounded-full bg-slate-950 overflow-hidden border border-emerald-500/10">
+                        <div
+                          style={{ width: `${percent}%` }}
+                          className={`h-full rounded-full ${
+                            percent > 85 ? 'bg-rose-500' : percent > 60 ? 'bg-amber-400' : 'bg-emerald-500'
+                          }`}
+                        />
+                      </div>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-slate-800 overflow-hidden">
-                      <div
-                        style={{ width: `${percent}%` }}
-                        className={`h-full rounded-full ${
-                          percent > 85 ? 'bg-rose-500' : percent > 60 ? 'bg-amber-400' : 'bg-cyan-400'
-                        }`}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
           </div>
 
@@ -188,45 +191,51 @@ export default function OverviewPage() {
           <div className="p-6 rounded-2xl glass-panel space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-purple-400" />
+                <Terminal className="w-4 h-4 text-emerald-400" />
                 Live Agent Sessions
               </h3>
-              <Link href="/sessions" className="text-xs text-indigo-400 hover:text-indigo-300 font-medium">
+              <Link href="/sessions" className="text-xs text-emerald-400 hover:text-emerald-300 font-medium">
                 View All →
               </Link>
             </div>
 
             <div className="space-y-2.5">
-              {(data?.recentSessions || []).map((session: any) => (
-                <Link
-                  key={session.sessionId}
-                  href={`/sessions/${session.sessionId}`}
-                  className="flex items-center justify-between p-3 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/40 hover:bg-slate-900/80 transition-all text-xs group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">
-                      <Terminal className="w-3.5 h-3.5 text-indigo-400" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-slate-200 group-hover:text-indigo-300 font-mono transition-colors">
-                        {session.sessionId}
+              {(!data?.recentSessions || data.recentSessions.length === 0) ? (
+                <div className="text-xs text-emerald-400/60 py-6 text-center font-mono">
+                  No active agent sessions recorded.
+                </div>
+              ) : (
+                data.recentSessions.map((session: any) => (
+                  <Link
+                    key={session.sessionId}
+                    href={`/sessions/${session.sessionId}`}
+                    className="flex items-center justify-between p-3 rounded-xl bg-[#0c1410] border border-emerald-500/15 hover:border-emerald-500/40 hover:bg-emerald-950/20 transition-all text-xs group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-slate-950 text-emerald-300 border border-emerald-500/20">
+                        <Terminal className="w-3.5 h-3.5 text-emerald-400" />
                       </div>
-                      <div className="text-[11px] text-slate-500">
-                        {session.agentName} • {Math.round((session.durationMs || 1000) / 1000)}s duration
+                      <div>
+                        <div className="font-semibold text-slate-200 group-hover:text-emerald-300 font-mono transition-colors">
+                          {session.sessionId}
+                        </div>
+                        <div className="text-[11px] text-slate-400">
+                          {session.agentName} • {Math.round((session.durationMs || 1000) / 1000)}s duration
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="text-right">
-                    <div className="font-semibold text-emerald-400 font-mono">
-                      {formatCurrency(session.totalCostUsd || 0)}
+                    <div className="text-right">
+                      <div className="font-semibold text-emerald-400 font-mono">
+                        {formatCurrency(session.totalCostUsd || 0)}
+                      </div>
+                      <div className="text-[10px] text-slate-400 font-mono">
+                        {formatNumber(session.totalTokens || 0)} tokens
+                      </div>
                     </div>
-                    <div className="text-[10px] text-slate-400 font-mono">
-                      {formatNumber(session.totalTokens || 0)} tokens
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))
+              )}
             </div>
           </div>
         </div>

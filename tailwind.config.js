@@ -9,22 +9,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#090d16',
-        card: '#111726',
-        'card-border': '#1e293b',
+        background: '#060b08',
+        card: '#0c1410',
+        'card-border': '#16281e',
         primary: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          200: '#a7f3d0',
+          300: '#6ee7b7',
+          400: '#34d399',
+          500: '#10b981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065f46',
+          900: '#064e3b',
+          950: '#022c22',
         },
         accent: {
-          cyan: '#06b6d4',
           emerald: '#10b981',
+          mint: '#34d399',
+          teal: '#14b8a6',
+          cyan: '#06b6d4',
+          lime: '#84cc16',
           amber: '#f59e0b',
           rose: '#f43f5e',
-          violet: '#8b5cf6',
         }
       },
       animation: {

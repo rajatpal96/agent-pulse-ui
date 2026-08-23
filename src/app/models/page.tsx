@@ -44,9 +44,9 @@ export default function ModelsPage() {
         </div>
 
         {/* Models Grid Table */}
-        <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+        <div className="glass-panel rounded-2xl overflow-hidden border border-emerald-500/15">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950/80 border-b border-slate-800/80 text-slate-400 font-semibold uppercase tracking-wider">
+            <thead className="bg-slate-950/80 border-b border-emerald-500/15 text-slate-400 font-semibold uppercase tracking-wider">
               <tr>
                 <th className="px-6 py-4">Model & Provider</th>
                 <th className="px-6 py-4">Invocations</th>
@@ -57,30 +57,30 @@ export default function ModelsPage() {
                 <th className="px-6 py-4 text-right">Total Spend</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-mono">
+            <tbody className="divide-y divide-emerald-500/10 font-mono">
               {models.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-slate-500 font-sans">
-                    No model telemetry recorded yet.
+                  <td colSpan={7} className="px-6 py-12 text-center text-emerald-400/60 font-sans">
+                    {loading ? 'Loading model telemetry...' : 'No model telemetry recorded yet.'}
                   </td>
                 </tr>
               ) : (
                 models.map((m) => (
-                  <tr key={`${m._id.provider}-${m._id.model}`} className="hover:bg-slate-900/40 transition-colors">
+                  <tr key={`${m._id.provider}-${m._id.model}`} className="hover:bg-emerald-950/20 transition-colors">
                     <td className="px-6 py-4">
                       <div className="font-bold text-white flex items-center gap-2">
-                        <Cpu className="w-3.5 h-3.5 text-indigo-400" />
+                        <Cpu className="w-3.5 h-3.5 text-emerald-400" />
                         {m._id.model}
                       </div>
-                      <div className="text-[10px] text-slate-500 uppercase">{m._id.provider}</div>
+                      <div className="text-[10px] text-slate-400 uppercase font-sans">{m._id.provider}</div>
                     </td>
                     <td className="px-6 py-4 text-slate-300">
                       {formatNumber(m.totalRequests)}
                     </td>
-                    <td className="px-6 py-4 text-indigo-300">
+                    <td className="px-6 py-4 text-emerald-300">
                       {formatNumber(m.inputTokens)}
                     </td>
-                    <td className="px-6 py-4 text-purple-300">
+                    <td className="px-6 py-4 text-teal-300">
                       {formatNumber(m.outputTokens)}
                     </td>
                     <td className="px-6 py-4 text-cyan-300">

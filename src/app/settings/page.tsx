@@ -107,10 +107,10 @@ export default function SettingsPage() {
         </div>
 
         {/* MCP OAuth 2.0 Token Server Section */}
-        <div className="p-6 rounded-2xl glass-panel border border-indigo-500/30 bg-gradient-to-br from-indigo-950/20 to-purple-950/10 space-y-6">
+        <div className="p-6 rounded-2xl glass-panel border border-emerald-500/25 bg-gradient-to-br from-emerald-950/20 to-teal-950/10 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-indigo-500/20 border border-indigo-500/40 text-indigo-400">
+              <div className="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400">
                 <Layers className="w-6 h-6" />
               </div>
               <div>
@@ -128,7 +128,7 @@ export default function SettingsPage() {
 
             <button
               onClick={handleGenerateMcpToken}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white text-xs font-semibold shadow-lg shadow-indigo-500/25 transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-semibold shadow-lg shadow-emerald-600/25 transition-all"
             >
               <Sparkles className="w-3.5 h-3.5" />
               Issue MCP Access Token
@@ -136,20 +136,20 @@ export default function SettingsPage() {
           </div>
 
           {/* Scope selection */}
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+          <div className="p-4 rounded-xl bg-[#0c1410] border border-emerald-500/15 space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-300">Target Client ID</label>
+                <label className="text-xs font-semibold text-emerald-100">Target Client ID</label>
                 <input
                   type="text"
                   value={mcpClientId}
                   onChange={(e) => setMcpClientId(e.target.value)}
-                  className="mt-1 block w-64 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className="mt-1 block w-64 px-3.5 py-1.5 rounded-xl bg-slate-950 border border-emerald-500/20 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1.5">Authorized MCP Scopes</label>
+                <label className="text-xs font-semibold text-emerald-100 block mb-1.5">Authorized MCP Scopes</label>
                 <div className="flex flex-wrap gap-2">
                   {[
                     { id: 'mcp:usage', label: 'mcp:usage (Session & Agent Metrics)' },
@@ -162,8 +162,8 @@ export default function SettingsPage() {
                       onClick={() => toggleScope(scope.id)}
                       className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
                         mcpScopes.includes(scope.id)
-                          ? 'bg-indigo-600 text-white border border-indigo-500 shadow-sm'
-                          : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200'
+                          ? 'bg-emerald-600 text-white border border-emerald-500 shadow-sm font-semibold'
+                          : 'bg-slate-950 text-slate-400 border border-emerald-500/15 hover:text-emerald-200'
                       }`}
                     >
                       {scope.label}
@@ -176,17 +176,17 @@ export default function SettingsPage() {
 
           {/* Generated MCP Token Output */}
           {generatedMcpToken && (
-            <div className="p-4 rounded-xl bg-indigo-950/50 border border-indigo-500/50 space-y-2 animate-fade-in">
-              <div className="flex justify-between items-center text-xs text-indigo-300 font-semibold">
+            <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 space-y-2 animate-fade-in">
+              <div className="flex justify-between items-center text-xs text-emerald-300 font-semibold">
                 <span>Active MCP Bearer Access Token (Pass via `mcpAccessToken` or MCP environment):</span>
               </div>
               <div className="flex items-center gap-2">
-                <code className="flex-1 px-3 py-2 rounded-lg bg-slate-950 border border-indigo-500/30 text-xs font-mono text-emerald-400 select-all truncate">
+                <code className="flex-1 px-3 py-2 rounded-lg bg-slate-950 border border-emerald-500/30 text-xs font-mono text-emerald-300 select-all truncate">
                   {generatedMcpToken}
                 </code>
                 <button
                   onClick={() => copyToClipboard(generatedMcpToken, setCopiedMcpToken)}
-                  className="flex items-center gap-1 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium"
+                  className="flex items-center gap-1 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium"
                 >
                   {copiedMcpToken ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   {copiedMcpToken ? 'Copied' : 'Copy'}
@@ -197,10 +197,10 @@ export default function SettingsPage() {
         </div>
 
         {/* API Keys Section */}
-        <div className="p-6 rounded-2xl glass-panel border border-slate-800 space-y-6">
+        <div className="p-6 rounded-2xl glass-panel border border-emerald-500/15 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
+              <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
                 <Key className="w-6 h-6" />
               </div>
               <div>
@@ -215,11 +215,11 @@ export default function SettingsPage() {
                 placeholder="Key label (e.g. CI/CD Collector)"
                 value={keyName}
                 onChange={(e) => setKeyName(e.target.value)}
-                className="w-56 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-56 px-3.5 py-2 rounded-xl bg-slate-950 border border-emerald-500/20 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
               />
               <button
                 onClick={handleCreateKey}
-                className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md transition-all"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/25 transition-all"
               >
                 <Plus className="w-3.5 h-3.5" />
                 Generate Key
@@ -229,17 +229,17 @@ export default function SettingsPage() {
 
           {/* Newly created key banner */}
           {createdKey && (
-            <div className="p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/50 space-y-2">
-              <div className="flex justify-between items-center text-xs text-indigo-300 font-semibold">
+            <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 space-y-2 animate-fade-in">
+              <div className="flex justify-between items-center text-xs text-emerald-300 font-semibold">
                 <span>New API Key Created (Copy it now — it won't be shown again):</span>
               </div>
               <div className="flex items-center gap-2">
-                <code className="flex-1 px-3 py-2 rounded-lg bg-slate-950 border border-indigo-500/30 text-xs font-mono text-emerald-400 select-all">
+                <code className="flex-1 px-3 py-2 rounded-lg bg-slate-950 border border-emerald-500/30 text-xs font-mono text-emerald-300 select-all">
                   {createdKey}
                 </code>
                 <button
                   onClick={() => copyToClipboard(createdKey, setCopiedKey)}
-                  className="flex items-center gap-1 px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium"
+                  className="flex items-center gap-1 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium"
                 >
                   {copiedKey ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   {copiedKey ? 'Copied' : 'Copy'}
@@ -249,26 +249,32 @@ export default function SettingsPage() {
           )}
 
           {/* Keys list */}
-          <div className="divide-y divide-slate-800/80">
-            {keys.map((k) => (
-              <div key={k._id} className="py-3 flex items-center justify-between text-xs font-mono">
-                <div>
-                  <div className="font-semibold text-slate-200">{k.name}</div>
-                  <div className="text-slate-500 text-[11px]">Prefix: {k.prefix}</div>
-                </div>
-                <div className="text-slate-400 text-right">
-                  <div>Created: {new Date(k.createdAt).toLocaleDateString()}</div>
-                  <span className="text-emerald-400 text-[10px]">Active</span>
-                </div>
+          <div className="divide-y divide-emerald-500/10">
+            {keys.length === 0 ? (
+              <div className="py-6 text-center text-xs text-emerald-400/60 font-mono">
+                No active API keys created yet. Click Generate Key above to create one.
               </div>
-            ))}
+            ) : (
+              keys.map((k) => (
+                <div key={k._id} className="py-3 flex items-center justify-between text-xs font-mono">
+                  <div>
+                    <div className="font-semibold text-slate-200">{k.name}</div>
+                    <div className="text-slate-500 text-[11px]">Prefix: {k.prefix}</div>
+                  </div>
+                  <div className="text-slate-400 text-right">
+                    <div>Created: {new Date(k.createdAt).toLocaleDateString()}</div>
+                    <span className="text-emerald-400 text-[10px]">Active</span>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
         {/* Privacy Boundary Selector */}
-        <div className="p-6 rounded-2xl glass-panel border border-slate-800 space-y-4">
+        <div className="p-6 rounded-2xl glass-panel border border-emerald-500/15 space-y-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <div className="p-3 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-400">
               <Shield className="w-6 h-6" />
             </div>
             <div>
@@ -304,10 +310,10 @@ export default function SettingsPage() {
                 onClick={() => !p.disabled && setPrivacyLevel(p.level)}
                 className={`p-4 rounded-xl border transition-all cursor-pointer ${
                   privacyLevel === p.level
-                    ? 'bg-indigo-950/30 border-indigo-500/50 shadow-lg shadow-indigo-500/10'
+                    ? 'bg-emerald-950/30 border-emerald-500/50 shadow-lg shadow-emerald-500/10'
                     : p.disabled
-                    ? 'opacity-40 bg-slate-900/30 border-slate-800 cursor-not-allowed'
-                    : 'bg-slate-900/40 border-slate-800 hover:border-slate-700'
+                    ? 'opacity-40 bg-slate-950/30 border-slate-900 cursor-not-allowed'
+                    : 'bg-[#0c1410] border-emerald-500/15 hover:border-emerald-500/30'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
@@ -325,7 +331,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Pricing Catalog Viewer */}
-        <div className="p-6 rounded-2xl glass-panel border border-slate-800 space-y-4">
+        <div className="p-6 rounded-2xl glass-panel border border-emerald-500/15 space-y-4">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
               <Database className="w-6 h-6" />
@@ -338,7 +344,7 @@ export default function SettingsPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-slate-950/80 border-b border-slate-800/80 text-slate-400 font-semibold uppercase">
+              <thead className="bg-slate-950/80 border-b border-emerald-500/15 text-slate-400 font-semibold uppercase">
                 <tr>
                   <th className="px-4 py-3">Provider</th>
                   <th className="px-4 py-3">Model</th>
@@ -348,17 +354,25 @@ export default function SettingsPage() {
                   <th className="px-4 py-3">Cache Write / 1M</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
-                {pricing.slice(0, 10).map((t: any) => (
-                  <tr key={`${t.provider}-${t.model}`} className="hover:bg-slate-900/40">
-                    <td className="px-4 py-3 font-semibold uppercase text-slate-400">{t.provider}</td>
-                    <td className="px-4 py-3 text-indigo-300 font-bold">{t.model}</td>
-                    <td className="px-4 py-3">${t.inputPricePerMillion.toFixed(2)}</td>
-                    <td className="px-4 py-3">${t.outputPricePerMillion.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-cyan-300">${(t.cacheReadPricePerMillion || 0).toFixed(3)}</td>
-                    <td className="px-4 py-3 text-purple-300">${(t.cacheWritePricePerMillion || 0).toFixed(3)}</td>
+              <tbody className="divide-y divide-emerald-500/10 text-slate-300">
+                {pricing.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="px-4 py-8 text-center text-emerald-400/60 font-sans">
+                      Loading pricing catalog from backend engine...
+                    </td>
                   </tr>
-                ))}
+                ) : (
+                  pricing.slice(0, 10).map((t: any) => (
+                    <tr key={`${t.provider}-${t.model}`} className="hover:bg-emerald-950/20">
+                      <td className="px-4 py-3 font-semibold uppercase text-slate-400">{t.provider}</td>
+                      <td className="px-4 py-3 text-emerald-300 font-bold">{t.model}</td>
+                      <td className="px-4 py-3">${(t.inputPricePerMillion || 0).toFixed(2)}</td>
+                      <td className="px-4 py-3">${(t.outputPricePerMillion || 0).toFixed(2)}</td>
+                      <td className="px-4 py-3 text-cyan-300">${(t.cacheReadPricePerMillion || 0).toFixed(3)}</td>
+                      <td className="px-4 py-3 text-teal-300">${(t.cacheWritePricePerMillion || 0).toFixed(3)}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

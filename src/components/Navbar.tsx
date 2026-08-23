@@ -15,6 +15,7 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
   const [user, setUser] = useState<any>(null);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup' | 'sso'>('signin');
+  const [cliCallbackUrl, setCliCallbackUrl] = useState<string | null>(null);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   useEffect(() => {
@@ -30,6 +31,16 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
     };
     checkUser();
     window.addEventListener('storage', checkUser);
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const cliCallback = params.get('cli_callback');
+      if (cliCallback) {
+        setCliCallbackUrl(cliCallback);
+        setIsAuthOpen(true);
+      }
+    }
+
     return () => window.removeEventListener('storage', checkUser);
   }, []);
 
@@ -49,18 +60,18 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
 
   return (
     <>
-      <header className="h-16 border-b border-slate-800/80 bg-slate-950/70 backdrop-blur-xl px-6 flex items-center justify-between sticky top-0 z-30">
+      <header className="h-16 border-b border-emerald-500/15 bg-[#060b08]/80 backdrop-blur-xl px-6 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs font-medium text-slate-300 shadow-sm">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#0c1410] border border-emerald-500/20 text-xs font-medium text-slate-300 shadow-sm">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
             <span className="text-slate-400">Org:</span>
-            <span className="font-semibold text-white truncate max-w-[180px] sm:max-w-none">
-              {user?.organization ? user.organization : 'Acme Engineering (org_default)'}
+            <span className="font-semibold text-emerald-100 truncate max-w-[180px] sm:max-w-none">
+              {user?.organization ? user.organization : 'AgentMeter Workspace'}
             </span>
           </div>
 
           {user && (
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               {user.provider ? `${user.provider.toUpperCase()} SSO` : 'VERIFIED'}
             </span>
@@ -69,15 +80,15 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
 
         <div className="flex items-center gap-3">
           {/* Time range selector */}
-          <div className="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs shadow-inner">
+          <div className="flex items-center p-1 rounded-xl bg-[#0c1410] border border-emerald-500/20 text-xs shadow-inner">
             {(['24h', '7d', '30d', '90d'] as const).map((r) => (
               <button
                 key={r}
                 onClick={() => onRangeChange(r)}
                 className={`px-3 py-1 rounded-lg font-medium transition-all ${
                   range === r
-                    ? 'bg-indigo-600 text-white shadow-sm font-semibold'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                    ? 'bg-emerald-600 text-white shadow-sm font-semibold'
+                    : 'text-slate-400 hover:text-emerald-200 hover:bg-emerald-950/30'
                 }`}
               >
                 {r.toUpperCase()}
@@ -90,29 +101,29 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
             <button
               onClick={onRefresh}
               disabled={isRefreshing}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-850 transition-all shadow-sm"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0c1410] border border-emerald-500/20 text-xs font-medium text-slate-300 hover:text-white hover:bg-emerald-950/40 transition-all shadow-sm"
               title="Refresh Telemetry"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-indigo-400' : ''}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-emerald-400' : 'text-slate-400'}`} />
               <span className="hidden sm:inline">Sync</span>
             </button>
           )}
 
           {/* User Profile / Identity Button */}
           {user ? (
-            <div className="relative pl-2 border-l border-slate-800">
+            <div className="relative pl-2 border-l border-emerald-500/20">
               <div
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-xs cursor-pointer transition-all shadow-sm"
+                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-[#0c1410] hover:bg-emerald-950/40 border border-emerald-500/20 text-xs cursor-pointer transition-all shadow-sm"
               >
-                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center font-bold text-[11px] shadow-sm">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center font-bold text-[11px] shadow-sm">
                   {user.name?.charAt(0) || 'U'}
                 </div>
                 <div className="text-left hidden md:block">
-                  <div className="text-white font-semibold text-[11px] leading-tight truncate max-w-[120px]">
+                  <div className="text-emerald-50 font-semibold text-[11px] leading-tight truncate max-w-[120px]">
                     {user.name}
                   </div>
-                  <div className="text-slate-400 text-[9px] uppercase font-mono truncate max-w-[120px]">
+                  <div className="text-emerald-400/70 text-[9px] uppercase font-mono truncate max-w-[120px]">
                     {user.role || 'Member'}
                   </div>
                 </div>
@@ -121,24 +132,24 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
 
               {/* Profile Dropdown */}
               {showProfileMenu && (
-                <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-slate-950 border border-slate-800 shadow-2xl p-3 space-y-3 z-50 animate-fade-in">
-                  <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800/80">
+                <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-[#0c1410] border border-emerald-500/20 shadow-2xl p-3 space-y-3 z-50 animate-fade-in">
+                  <div className="p-2.5 rounded-xl bg-slate-950/90 border border-emerald-500/15">
                     <div className="font-bold text-xs text-white truncate">{user.name}</div>
                     <div className="text-[11px] text-slate-400 truncate">{user.email}</div>
-                    <div className="mt-1.5 text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 inline-block truncate max-w-full">
-                      {user.organization || 'Acme Engineering'}
+                    <div className="mt-1.5 text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 inline-block truncate max-w-full">
+                      {user.organization || 'Workspace Member'}
                     </div>
                   </div>
 
-                  <div className="border-t border-slate-800/80 pt-2 space-y-1">
+                  <div className="border-t border-emerald-500/15 pt-2 space-y-1">
                     <button
                       onClick={() => {
                         setShowProfileMenu(false);
                         openAuth('signup');
                       }}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-slate-900 transition-colors text-left"
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-emerald-950/30 transition-colors text-left"
                     >
-                      <UserPlus className="w-3.5 h-3.5 text-indigo-400" />
+                      <UserPlus className="w-3.5 h-3.5 text-emerald-400" />
                       <span>Switch / Create Organization</span>
                     </button>
 
@@ -157,15 +168,15 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
             <div className="flex items-center gap-2">
               <button
                 onClick={() => openAuth('signin')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 text-xs font-semibold shadow-sm transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0c1410] hover:bg-emerald-950/40 border border-emerald-500/20 text-slate-200 text-xs font-semibold shadow-sm transition-all"
               >
-                <LogIn className="w-3.5 h-3.5 text-slate-400" />
+                <LogIn className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Sign In</span>
               </button>
 
               <button
                 onClick={() => openAuth('signup')}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 transition-all hover:scale-[1.02]"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/30 transition-all hover:scale-[1.02]"
               >
                 <UserPlus className="w-3.5 h-3.5" />
                 <span>Sign Up</span>
@@ -178,6 +189,7 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
       <AuthModal
         isOpen={isAuthOpen}
         initialMode={authMode}
+        cliCallback={cliCallbackUrl}
         onClose={() => setIsAuthOpen(false)}
         onSuccess={(profile) => setUser(profile)}
       />
