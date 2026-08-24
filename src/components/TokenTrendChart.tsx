@@ -33,21 +33,21 @@ export function TokenTrendChart({ data }: TokenTrendChartProps) {
     <div className="relative w-full">
       {/* Legend */}
       <div className="flex flex-wrap items-center gap-4 text-xs mb-4">
-        <div className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-sm bg-emerald-500" />
-          <span className="text-slate-300">Input Tokens</span>
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-md bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
+          <span className="text-slate-200 font-medium">Input Tokens</span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-sm bg-teal-400" />
-          <span className="text-slate-300">Output / Reasoning</span>
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-md bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+          <span className="text-slate-200 font-medium">Output / Reasoning</span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-sm bg-cyan-400" />
-          <span className="text-slate-300">Cached Prompt Tokens</span>
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-md bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+          <span className="text-slate-200 font-medium">Cached Prompt Tokens</span>
         </div>
-        <div className="flex items-center gap-1.5 ml-auto text-emerald-400 font-mono">
+        <div className="flex items-center gap-1.5 ml-auto text-emerald-400 font-mono text-[11px]">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Cost Burn Rate</span>
+          <span>Burn Trajectory</span>
         </div>
       </div>
 
@@ -72,43 +72,70 @@ export function TokenTrendChart({ data }: TokenTrendChartProps) {
             >
               {/* Tooltip */}
               {isHovered && (
-                <div className="absolute -top-24 z-50 bg-[#0c1410]/95 border border-emerald-500/40 rounded-xl p-2.5 shadow-2xl backdrop-blur-md text-[11px] min-w-[170px] pointer-events-none transition-all">
-                  <p className="font-semibold text-emerald-200 border-b border-emerald-500/20 pb-1 mb-1 font-mono">
+                <div className="absolute -top-28 z-50 bg-[#0c1410]/98 border border-emerald-500/40 rounded-2xl p-3 shadow-2xl backdrop-blur-xl text-[11px] min-w-[185px] pointer-events-none transition-all space-y-1">
+                  <p className="font-bold text-white border-b border-emerald-500/20 pb-1 font-mono">
                     {point.date}
                   </p>
-                  <div className="flex justify-between text-slate-400">
-                    <span>Input:</span>
-                    <span className="text-emerald-300 font-mono">{formatNumber(point.inputTokens)}</span>
+                  <div className="flex justify-between items-center text-slate-300">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-indigo-500" />
+                      <span>Input:</span>
+                    </span>
+                    <span className="text-indigo-300 font-mono font-bold">{formatNumber(point.inputTokens)}</span>
                   </div>
-                  <div className="flex justify-between text-slate-400">
-                    <span>Output:</span>
-                    <span className="text-teal-300 font-mono">{formatNumber(point.outputTokens)}</span>
+                  <div className="flex justify-between items-center text-slate-300">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-amber-500" />
+                      <span>Output:</span>
+                    </span>
+                    <span className="text-amber-300 font-mono font-bold">{formatNumber(point.outputTokens)}</span>
                   </div>
-                  <div className="flex justify-between text-slate-400">
-                    <span>Cache:</span>
-                    <span className="text-cyan-300 font-mono">{formatNumber(point.cacheTokens)}</span>
+                  <div className="flex justify-between items-center text-slate-300">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      <span>Cache:</span>
+                    </span>
+                    <span className="text-emerald-300 font-mono font-bold">{formatNumber(point.cacheTokens)}</span>
                   </div>
-                  <div className="flex justify-between text-emerald-400 font-semibold pt-1 border-t border-emerald-500/20 mt-1">
+                  <div className="flex justify-between items-center text-emerald-300 font-semibold pt-1 border-t border-emerald-500/20 mt-1">
                     <span>Est. Cost:</span>
-                    <span className="font-mono">{formatCurrency(point.cost)}</span>
+                    <span className="font-mono font-bold text-emerald-400">{formatCurrency(point.cost)}</span>
                   </div>
                 </div>
               )}
 
-              {/* Stacked Bar */}
+              {/* Stacked Bar with High-Contrast Colors & Segment Definition */}
               <div
                 style={{ height: `${heightPercent}%` }}
-                className={`w-full max-w-[28px] rounded-t-lg flex flex-col overflow-hidden transition-all duration-300 ${
-                  isHovered ? 'scale-105 shadow-lg shadow-emerald-500/30 brightness-110' : 'opacity-85'
+                className={`w-full max-w-[28px] rounded-t-lg flex flex-col overflow-hidden transition-all duration-300 border border-emerald-500/30 ${
+                  isHovered ? 'scale-105 shadow-xl shadow-emerald-500/40 brightness-110' : 'opacity-95'
                 }`}
               >
-                <div style={{ height: `${cacheH}%` }} className="w-full bg-cyan-400" />
-                <div style={{ height: `${outputH}%` }} className="w-full bg-teal-400" />
-                <div style={{ height: `${inputH}%` }} className="w-full bg-emerald-500" />
+                {cacheH > 0 && (
+                  <div 
+                    style={{ height: `${cacheH}%` }} 
+                    className="w-full bg-emerald-400 shadow-inner" 
+                    title={`Cache Read Tokens: ${formatNumber(point.cacheTokens)}`}
+                  />
+                )}
+                {outputH > 0 && (
+                  <div 
+                    style={{ height: `${outputH}%` }} 
+                    className="w-full bg-amber-500 shadow-inner border-t border-amber-400/30" 
+                    title={`Output / Reasoning: ${formatNumber(point.outputTokens)}`}
+                  />
+                )}
+                {inputH > 0 && (
+                  <div 
+                    style={{ height: `${inputH}%` }} 
+                    className="w-full bg-indigo-500 shadow-inner border-t border-indigo-400/30" 
+                    title={`Input Prompt Tokens: ${formatNumber(point.inputTokens)}`}
+                  />
+                )}
               </div>
 
               {/* X Axis Label */}
-              <span className="text-[10px] text-emerald-400/60 mt-2 font-mono truncate max-w-full">
+              <span className="text-[10px] text-slate-400 mt-2 font-mono truncate max-w-full font-medium">
                 {point.date.slice(5)}
               </span>
             </div>
