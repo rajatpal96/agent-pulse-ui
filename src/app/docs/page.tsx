@@ -357,44 +357,49 @@ await tt.recordSession({
         {/* CLI Command Reference Table */}
         <div className="space-y-4">
           <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-            <Terminal className="w-5 h-5 text-emerald-400" />
+            <Terminal className="w-5 h-5 text-amber-400" />
             CLI Commands Reference
           </h2>
 
-          <div className="glass-panel rounded-2xl overflow-hidden border border-emerald-500/15">
+          <div className="glass-panel rounded-2xl overflow-hidden border border-[#3d2b20]">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-950/80 border-b border-emerald-500/15 text-slate-400 font-semibold uppercase tracking-wider font-mono">
+              <thead className="bg-[#120c09] border-b border-[#3d2b20] text-[#a89786] font-semibold uppercase tracking-wider font-mono">
                 <tr>
                   <th className="px-6 py-4">Command</th>
                   <th className="px-6 py-4">Description</th>
                   <th className="px-6 py-4 text-right">Example</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-emerald-500/10 font-mono">
-                <tr className="hover:bg-emerald-950/20 transition-colors">
-                  <td className="px-6 py-4 text-emerald-400 font-bold">tokentrail login</td>
-                  <td className="px-6 py-4 text-slate-300 font-sans">Authenticate CLI with your browser and link organization tokens.</td>
-                  <td className="px-6 py-4 text-right text-slate-400"><code>tokentrail login</code></td>
+              <tbody className="divide-y divide-[#3d2b20]/60 font-mono">
+                <tr className="hover:bg-[#251a13]/40 transition-colors">
+                  <td className="px-6 py-4 text-amber-400 font-bold">tokentrail login</td>
+                  <td className="px-6 py-4 text-[#d1c2b4] font-sans">Authenticate developer credentials & link organization.</td>
+                  <td className="px-6 py-4 text-right text-[#a89786]"><code>tokentrail login</code></td>
                 </tr>
-                <tr className="hover:bg-emerald-950/20 transition-colors">
-                  <td className="px-6 py-4 text-emerald-400 font-bold">tokentrail status</td>
-                  <td className="px-6 py-4 text-slate-300 font-sans">Inspect linked agents, latency, and ingestion status.</td>
-                  <td className="px-6 py-4 text-right text-slate-400"><code>tokentrail status</code></td>
+                <tr className="hover:bg-[#251a13]/40 transition-colors">
+                  <td className="px-6 py-4 text-amber-400 font-bold">tokentrail sync</td>
+                  <td className="px-6 py-4 text-[#d1c2b4] font-sans">Scan & synchronize all historical sessions and token usage.</td>
+                  <td className="px-6 py-4 text-right text-[#a89786]"><code>tokentrail sync</code></td>
                 </tr>
-                <tr className="hover:bg-emerald-950/20 transition-colors">
-                  <td className="px-6 py-4 text-emerald-400 font-bold">tokentrail hook --all</td>
-                  <td className="px-6 py-4 text-slate-300 font-sans">Automatically detect and hook all installed coding agents.</td>
-                  <td className="px-6 py-4 text-right text-slate-400"><code>tokentrail hook --all</code></td>
+                <tr className="hover:bg-[#251a13]/40 transition-colors">
+                  <td className="px-6 py-4 text-amber-400 font-bold">tokentrail connect &lt;agent&gt;</td>
+                  <td className="px-6 py-4 text-[#d1c2b4] font-sans">Automatically install telemetry hooks for a coding agent.</td>
+                  <td className="px-6 py-4 text-right text-[#a89786]"><code>tokentrail connect claude</code></td>
                 </tr>
-                <tr className="hover:bg-emerald-950/20 transition-colors">
-                  <td className="px-6 py-4 text-emerald-400 font-bold">tokentrail trace &lt;id&gt;</td>
-                  <td className="px-6 py-4 text-slate-300 font-sans">Stream live token and step execution traces in terminal.</td>
-                  <td className="px-6 py-4 text-right text-slate-400"><code>tokentrail trace sess_123</code></td>
+                <tr className="hover:bg-[#251a13]/40 transition-colors">
+                  <td className="px-6 py-4 text-amber-400 font-bold">tokentrail watch</td>
+                  <td className="px-6 py-4 text-[#d1c2b4] font-sans">Stream and ingest agent completions in real-time.</td>
+                  <td className="px-6 py-4 text-right text-[#a89786]"><code>tokentrail watch</code></td>
                 </tr>
-                <tr className="hover:bg-emerald-950/20 transition-colors">
-                  <td className="px-6 py-4 text-emerald-400 font-bold">tokentrail logout</td>
-                  <td className="px-6 py-4 text-slate-300 font-sans">Remove cached credentials from local terminal machine.</td>
-                  <td className="px-6 py-4 text-right text-slate-400"><code>tokentrail logout</code></td>
+                <tr className="hover:bg-[#251a13]/40 transition-colors">
+                  <td className="px-6 py-4 text-amber-400 font-bold">tokentrail status</td>
+                  <td className="px-6 py-4 text-[#d1c2b4] font-sans">Show connected agents, auth state, and server endpoints.</td>
+                  <td className="px-6 py-4 text-right text-[#a89786]"><code>tokentrail status</code></td>
+                </tr>
+                <tr className="hover:bg-[#251a13]/40 transition-colors">
+                  <td className="px-6 py-4 text-amber-400 font-bold">tokentrail doctor</td>
+                  <td className="px-6 py-4 text-[#d1c2b4] font-sans">Run diagnostic health check on endpoints and local configs.</td>
+                  <td className="px-6 py-4 text-right text-[#a89786]"><code>tokentrail doctor</code></td>
                 </tr>
               </tbody>
             </table>
