@@ -51,6 +51,8 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
     localStorage.removeItem('tokentrail_user');
     setUser(null);
     setShowProfileMenu(false);
+    window.dispatchEvent(new Event('auth_change'));
+    window.dispatchEvent(new Event('storage'));
   };
 
   const openAuth = (mode: 'signin' | 'signup') => {
@@ -180,7 +182,11 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
         initialMode={authMode}
         cliCallback={cliCallbackUrl}
         onClose={() => setIsAuthOpen(false)}
-        onSuccess={(profile) => setUser(profile)}
+        onSuccess={(profile) => {
+          setUser(profile);
+          window.dispatchEvent(new Event('auth_change'));
+          window.dispatchEvent(new Event('storage'));
+        }}
       />
     </>
   );
