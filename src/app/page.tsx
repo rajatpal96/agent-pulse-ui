@@ -111,7 +111,7 @@ export default function OverviewPage() {
           <div className="text-center space-y-5 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-semibold shadow-[0_0_15px_rgba(245,158,11,0.15)]">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Universal AI Agent Fleet Observability & Cost Intelligence</span>
+              <span>Live AI Token Usage & Cost Analytics Across Coding Agents</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
@@ -263,15 +263,15 @@ export default function OverviewPage() {
             <div>
               <div className="flex items-center gap-2.5 flex-wrap">
                 <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                  Fleet Observability & Intelligence
+                  Real-Time AI Token & Cost Tracker
                 </h2>
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold font-mono px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 shadow-[0_0_12px_rgba(245,158,11,0.2)]">
                   <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  Live Fleet Active
+                  Live Telemetry Stream
                 </span>
               </div>
               <p className="text-sm text-[#b8a695] mt-1.5 font-medium">
-                Real-time telemetry, token burn rate, and latency metrics across Claude Code, GitHub Copilot, Gemini, Codex & Grok.
+                Live monitoring of token consumption, spend burn rate, and latency metrics across Claude Code, GitHub Copilot, Gemini, Codex & Grok.
               </p>
             </div>
 
