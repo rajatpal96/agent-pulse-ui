@@ -141,18 +141,7 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
                     </div>
                   </div>
 
-                  <div className="border-t border-emerald-500/15 pt-2 space-y-1">
-                    <button
-                      onClick={() => {
-                        setShowProfileMenu(false);
-                        openAuth('signup');
-                      }}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-emerald-950/30 transition-colors text-left font-medium"
-                    >
-                      <UserPlus className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Switch / Create Organization</span>
-                    </button>
-
+                  <div className="border-t border-emerald-500/15 pt-2">
                     <button
                       onClick={handleLogout}
                       className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-950/30 transition-colors text-left font-medium"
