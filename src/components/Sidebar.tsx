@@ -12,6 +12,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+import { TokenTrailLogo } from './TokenTrailLogo';
+
 const NAV_ITEMS = [
   { name: 'Overview', href: '/', icon: LayoutDashboard },
   { name: 'AI Agents', href: '/agents', icon: Bot },
@@ -25,27 +27,22 @@ export function Sidebar() {
   return (
     <aside className="w-64 border-r border-emerald-500/15 bg-[#060b08]/95 backdrop-blur-2xl flex flex-col h-screen sticky top-0 z-40 shadow-2xl shadow-black">
       {/* Brand Header */}
-      <div className="p-5 border-b border-emerald-500/15 flex items-center gap-3.5 bg-gradient-to-b from-emerald-950/20 to-transparent">
-        <div className="relative">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-600 p-[1.5px] flex items-center justify-center shadow-lg shadow-emerald-500/25">
-            <div className="w-full h-full bg-[#060b08] rounded-[14px] flex items-center justify-center">
-              <Radio className="w-5 h-5 text-emerald-400 animate-pulse" />
-            </div>
+      <div className="p-5 border-b border-emerald-500/15 flex items-center justify-between bg-gradient-to-b from-emerald-950/20 to-transparent">
+        <Link href="/" className="flex items-center gap-3 group">
+          <TokenTrailLogo size={36} />
+          <div>
+            <h1 className="font-extrabold text-base text-white tracking-tight flex items-center gap-1.5">
+              <span>Token</span>
+              <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
+                Trail
+              </span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 font-mono font-semibold border border-emerald-500/30">
+                v1.0
+              </span>
+            </h1>
+            <p className="text-[11px] text-slate-400 font-medium font-mono">AI Fleet Metrics</p>
           </div>
-          <span className="absolute -top-1 -right-1 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-          </span>
-        </div>
-        <div>
-          <h1 className="font-extrabold text-base text-white tracking-tight flex items-center gap-2">
-            AgentMeter
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 font-mono font-semibold border border-emerald-500/30">
-              v1.0
-            </span>
-          </h1>
-          <p className="text-xs text-slate-400 font-medium">AI Observability</p>
-        </div>
+        </Link>
       </div>
 
       {/* Navigation Links */}

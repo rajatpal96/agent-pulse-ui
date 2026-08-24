@@ -3,8 +3,8 @@ import { Sidebar } from '../components/Sidebar';
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://tokentrail.xyz'),
-  title: 'TokenTrail (AgentMeter) | AI Agent Usage & Observability Platform',
-  description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and MCP observability across Claude Code, GitHub Copilot, Gemini/Antigravity, Codex, and Grok.',
+  title: 'TokenTrail | AI Agent Fleet Observability & Cost Intelligence Platform',
+  description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and fleet observability across Claude Code, GitHub Copilot, Gemini/Antigravity, Codex, and Grok.',
   openGraph: {
     title: 'TokenTrail | AI Agent Usage & Observability Platform',
     description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and MCP observability.',

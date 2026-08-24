@@ -336,10 +336,13 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
               <Shield className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-lg text-emerald-50 flex items-center gap-2">
-                AgentMeter Identity
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  v1.0
+              <h3 className="font-bold text-lg text-emerald-50 flex items-center gap-1.5">
+                <span>Token</span>
+                <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
+                  Trail
+                </span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">
+                  Identity
                 </span>
               </h3>
               <p className="text-xs text-slate-400">
@@ -865,7 +868,7 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
 
         {/* Security Footer Note */}
         <div className="text-[11px] text-slate-500 text-center border-t border-emerald-500/15 pt-3">
-          Protected by AgentMeter Enterprise Identity & Authorization Layer
+          Protected by TokenTrail Enterprise Identity & Authorization Layer
         </div>
       </div>
     </div>

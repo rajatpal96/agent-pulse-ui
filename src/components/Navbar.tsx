@@ -66,7 +66,7 @@ export function Navbar({ range, onRangeChange, onRefresh, isRefreshing }: Navbar
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span className="text-slate-400 font-normal">Org:</span>
             <span className="font-semibold text-emerald-100 truncate max-w-[180px] sm:max-w-none">
-              {user?.organization ? user.organization : 'AgentMeter Workspace'}
+              {user?.organization ? user.organization : 'TokenTrail Workspace'}
             </span>
           </div>
 
