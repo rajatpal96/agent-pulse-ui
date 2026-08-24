@@ -79,37 +79,6 @@ export function Sidebar() {
           );
         })}
       </nav>
-
-      {/* Connected Agents Fleet Footer */}
-      <div className="p-4 border-t border-emerald-500/15 bg-gradient-to-t from-emerald-950/20 to-transparent">
-        <div className="rounded-2xl p-3.5 bg-[#0a140e] border border-emerald-500/20 space-y-2.5 shadow-inner">
-          <div className="flex items-center justify-between text-xs text-slate-300">
-            <span className="flex items-center gap-2 font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Fleet Status
-            </span>
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">
-              HEALTHY
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-1.5 pt-1">
-            {[
-              { name: 'Claude', color: 'text-amber-300 bg-amber-500/10 border-amber-500/20' },
-              { name: 'Copilot', color: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20' },
-              { name: 'Gemini', color: 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20' },
-              { name: 'Codex', color: 'text-teal-300 bg-teal-500/10 border-teal-500/20' },
-              { name: 'Grok', color: 'text-lime-300 bg-lime-500/10 border-lime-500/20' },
-            ].map((agent) => (
-              <span
-                key={agent.name}
-                className={`text-[10px] font-mono font-medium px-2 py-0.5 rounded-lg border ${agent.color}`}
-              >
-                {agent.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
     </aside>
   );
 }

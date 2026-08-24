@@ -79,7 +79,9 @@ export default function OverviewPage() {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0c1410] border border-emerald-500/20 text-xs font-mono text-emerald-300">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              <span>5 Agents Tracked</span>
+              <span>
+                {data ? (data.activeAgentsCount ?? (data.usageByAgent?.length || 0)) : 0} Agents Tracked
+              </span>
             </div>
           </div>
         </div>
