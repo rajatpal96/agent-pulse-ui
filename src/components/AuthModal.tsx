@@ -20,6 +20,7 @@ import {
   Briefcase,
   Terminal,
 } from 'lucide-react';
+import { apiFetch } from '@/lib/api';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -85,7 +86,7 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
       
       if (!apiKey) {
         try {
-          const keysRes = await fetch('/api/v1/api-keys', {
+          const keysRes = await apiFetch('/api/v1/api-keys', {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (keysRes.ok) {
@@ -99,7 +100,7 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
 
       if (!apiKey) {
         try {
-          const createRes = await fetch('/api/v1/api-keys', {
+          const createRes = await apiFetch('/api/v1/api-keys', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -154,7 +155,7 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
     const userOrg = organization.trim() || (ssoDomain ? ssoDomain.split('.')[0].toUpperCase() : 'Enterprise');
 
     try {
-      const res = await fetch(`/api/v1/auth/sso/${provider}`, {
+      const res = await apiFetch(`/api/v1/auth/sso/${provider}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -209,7 +210,7 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
     setSuccessMessage(null);
 
     try {
-      const res = await fetch('/api/v1/auth/login', {
+      const res = await apiFetch('/api/v1/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim(), password }),
@@ -270,7 +271,7 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
 
     try {
       const orgName = organization.trim() || `${name.trim()}'s Team`;
-      const res = await fetch('/api/v1/auth/signup', {
+      const res = await apiFetch('/api/v1/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
