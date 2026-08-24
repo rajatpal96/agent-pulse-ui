@@ -190,17 +190,52 @@ export default function OverviewPage() {
           </div>
 
           {/* Quick CLI Connect Box */}
-          <div className="w-full max-w-2xl p-5 rounded-2xl bg-[#09120c] border border-emerald-500/25 space-y-3 shadow-xl">
-            <div className="flex items-center justify-between text-xs text-slate-300">
-              <span className="flex items-center gap-2 font-mono text-emerald-300">
+          <div className="w-full max-w-3xl p-6 rounded-3xl bg-[#09120c] border border-emerald-500/30 space-y-5 shadow-2xl relative overflow-hidden">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-500/15 pb-3">
+              <div className="flex items-center gap-2.5 font-mono text-emerald-300 font-bold text-sm">
                 <Terminal className="w-4 h-4 text-emerald-400" />
-                Quick Connect CLI
-              </span>
-              <span className="text-[11px] text-slate-400">Zero-Config Telemetry</span>
+                <span>Quick Connect & Installation Guide</span>
+              </div>
+              <Link
+                href="/docs"
+                className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold font-mono flex items-center gap-1 group"
+              >
+                <span>Read Full Docs</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
-            <div className="p-3 rounded-xl bg-slate-950 border border-emerald-500/15 font-mono text-xs text-emerald-300 flex items-center justify-between">
-              <code>npx tokentrail@latest login</code>
-              <span className="text-[10px] text-slate-400 uppercase font-mono">Terminal Command</span>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="p-3.5 rounded-2xl bg-slate-950/90 border border-emerald-500/20 space-y-2">
+                <div className="text-[10px] font-mono text-emerald-400 font-bold uppercase">1. Install CLI</div>
+                <div className="font-mono text-[11px] text-slate-200 bg-black/60 p-2 rounded-lg border border-emerald-500/10">
+                  <code>npm i -g tokentrail</code>
+                </div>
+                <p className="text-[10px] text-slate-400">or run via npx without install</p>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-slate-950/90 border border-emerald-500/20 space-y-2">
+                <div className="text-[10px] font-mono text-emerald-400 font-bold uppercase">2. Authenticate</div>
+                <div className="font-mono text-[11px] text-slate-200 bg-black/60 p-2 rounded-lg border border-emerald-500/10">
+                  <code>tokentrail login</code>
+                </div>
+                <p className="text-[10px] text-slate-400">links terminal to workspace</p>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-slate-950/90 border border-emerald-500/20 space-y-2">
+                <div className="text-[10px] font-mono text-emerald-400 font-bold uppercase">3. Hook Agents</div>
+                <div className="font-mono text-[11px] text-slate-200 bg-black/60 p-2 rounded-lg border border-emerald-500/10">
+                  <code>tokentrail hook --all</code>
+                </div>
+                <p className="text-[10px] text-slate-400">auto-attaches telemetry stream</p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-1 text-[11px] text-slate-400 border-t border-emerald-500/10">
+              <span className="font-mono text-emerald-400/80">Sub-millisecond latency • No code changes required</span>
+              <Link href="/docs" className="text-emerald-400 hover:underline font-medium">
+                Claude Code, Gemini, Copilot & SDK Setup →
+              </Link>
             </div>
           </div>
 

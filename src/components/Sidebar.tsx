@@ -10,6 +10,7 @@ import {
   Cpu,
   Radio,
   Sparkles,
+  BookOpen,
 } from 'lucide-react';
 
 import { TokenTrailLogo } from './TokenTrailLogo';
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
   { name: 'AI Agents', href: '/agents', icon: Bot },
   { name: 'Sessions', href: '/sessions', icon: Terminal },
   { name: 'Models & Tokens', href: '/models', icon: Cpu },
+  { name: 'Docs & Setup', href: '/docs', icon: BookOpen },
 ];
 
 export function Sidebar() {
