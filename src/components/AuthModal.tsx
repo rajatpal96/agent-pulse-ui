@@ -383,7 +383,7 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
         )}
 
         {/* Mode Navigation Tabs */}
-        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-slate-950/80 border border-emerald-500/15 text-xs font-semibold">
+        <div className="grid grid-cols-2 gap-1.5 p-1 rounded-2xl bg-slate-950/80 border border-emerald-500/15 text-xs font-semibold">
           <button
             onClick={() => {
               setMode('signin');
@@ -411,20 +411,6 @@ export function AuthModal({ isOpen, initialMode = 'signin', cliCallback, onClose
             }`}
           >
             Sign Up
-          </button>
-          <button
-            onClick={() => {
-              setMode('sso');
-              setError(null);
-              setSuccessMessage(null);
-            }}
-            className={`py-2 px-3 rounded-xl transition-all ${
-              mode === 'sso'
-                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 font-bold'
-                : 'text-slate-400 hover:text-emerald-300 hover:bg-slate-900/50'
-            }`}
-          >
-            Enterprise SSO
           </button>
         </div>
 

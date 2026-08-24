@@ -92,7 +92,7 @@ export default function AgentsPage() {
         {/* Agent Cards Grid */}
         {agents.length === 0 && !loading ? (
           <div className="p-12 text-center glass-panel rounded-2xl border border-emerald-500/15 text-emerald-400/60 font-mono">
-            No agent fleet telemetry logged for this period. Use the Live Telemetry Simulator or connect your agents to begin.
+            No agent fleet telemetry logged for this period. Connect your coding agents to begin streaming observability data.
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
