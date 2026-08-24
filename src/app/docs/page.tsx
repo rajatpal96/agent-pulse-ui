@@ -33,34 +33,34 @@ export default function DocsPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-[#050907]">
+    <div className="flex-1 flex flex-col min-h-screen bg-[#140e0a]">
       <Navbar range="30d" onRangeChange={() => {}} />
 
       <div className="p-6 md:p-10 max-w-6xl mx-auto w-full space-y-10 animate-fade-in">
         {/* Header Breadcrumb & Title */}
-        <div className="space-y-3 pb-6 border-b border-emerald-500/15">
-          <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
-            <Link href="/" className="hover:text-emerald-400 transition-colors">
+        <div className="space-y-3 pb-6 border-b border-[#3d2b20]/60">
+          <div className="flex items-center gap-2 text-xs text-[#a89786] font-mono">
+            <Link href="/" className="hover:text-amber-400 transition-colors">
               TokenTrail
             </Link>
-            <ChevronRight className="w-3 h-3 text-slate-600" />
-            <span className="text-emerald-400 font-medium">Documentation & Installation Guide</span>
+            <ChevronRight className="w-3 h-3 text-[#6e5d50]" />
+            <span className="text-amber-400 font-medium">Documentation & Installation Guide</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
-                <BookOpen className="w-8 h-8 text-emerald-400" />
+                <BookOpen className="w-8 h-8 text-amber-400" />
                 Installation & Integration Guide
               </h1>
-              <p className="text-sm text-slate-300 mt-1.5 max-w-3xl">
+              <p className="text-sm text-[#d1c2b4] mt-1.5 max-w-3xl">
                 Quickly connect your AI coding agents — Claude Code, GitHub Copilot, Gemini / Antigravity, OpenAI Codex, and xAI Grok to stream sub-millisecond telemetry to TokenTrail.
               </p>
             </div>
 
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold font-mono transition-all w-fit shrink-0"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold font-mono transition-all w-fit shrink-0"
             >
               <span>← Back to Dashboard</span>
             </Link>
@@ -69,62 +69,62 @@ export default function DocsPage() {
 
         {/* Quick 3-Step Setup Overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className="p-5 rounded-2xl glass-panel border border-emerald-500/20 space-y-3 relative overflow-hidden">
-            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+          <div className="p-5 rounded-2xl glass-panel border border-amber-500/25 space-y-3 relative overflow-hidden">
+            <div className="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-mono font-bold flex items-center justify-center text-sm">
               1
             </div>
             <h3 className="font-bold text-white text-base">Install CLI</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-medium">
+            <p className="text-xs text-[#b8a695] leading-relaxed font-medium">
               Run TokenTrail zero-config CLI via npx or global npm package manager.
             </p>
-            <div className="p-2.5 rounded-xl bg-slate-950 border border-emerald-500/15 font-mono text-[11px] text-emerald-300 flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-[#120c09] border border-[#3d2b20] font-mono text-[11px] text-amber-300 flex items-center justify-between">
               <code>npm i -g tokentrail</code>
               <button
                 onClick={() => copyToClipboard('npm i -g tokentrail', 'step1')}
-                className="text-slate-400 hover:text-emerald-300 p-1"
+                className="text-[#a89786] hover:text-amber-300 p-1"
                 title="Copy command"
               >
-                {copiedKey === 'step1' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedKey === 'step1' ? <Check className="w-3.5 h-3.5 text-amber-400" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl glass-panel border border-teal-500/20 space-y-3 relative overflow-hidden">
-            <div className="w-8 h-8 rounded-xl bg-teal-500/20 border border-teal-500/30 text-teal-300 font-mono font-bold flex items-center justify-center text-sm">
+          <div className="p-5 rounded-2xl glass-panel border border-orange-500/25 space-y-3 relative overflow-hidden">
+            <div className="w-8 h-8 rounded-xl bg-orange-500/20 border border-orange-500/30 text-orange-300 font-mono font-bold flex items-center justify-center text-sm">
               2
             </div>
             <h3 className="font-bold text-white text-base">Authenticate</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-medium">
+            <p className="text-xs text-[#b8a695] leading-relaxed font-medium">
               Link terminal and auto-populate your organization telemetry API tokens.
             </p>
-            <div className="p-2.5 rounded-xl bg-slate-950 border border-emerald-500/15 font-mono text-[11px] text-emerald-300 flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-[#120c09] border border-[#3d2b20] font-mono text-[11px] text-amber-300 flex items-center justify-between">
               <code>tokentrail login</code>
               <button
                 onClick={() => copyToClipboard('tokentrail login', 'step2')}
-                className="text-slate-400 hover:text-emerald-300 p-1"
+                className="text-[#a89786] hover:text-amber-300 p-1"
                 title="Copy command"
               >
-                {copiedKey === 'step2' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedKey === 'step2' ? <Check className="w-3.5 h-3.5 text-amber-400" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl glass-panel border border-cyan-500/20 space-y-3 relative overflow-hidden">
-            <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-mono font-bold flex items-center justify-center text-sm">
+          <div className="p-5 rounded-2xl glass-panel border border-yellow-500/25 space-y-3 relative overflow-hidden">
+            <div className="w-8 h-8 rounded-xl bg-yellow-500/20 border border-yellow-500/30 text-yellow-300 font-mono font-bold flex items-center justify-center text-sm">
               3
             </div>
             <h3 className="font-bold text-white text-base">Auto-Hook Agents</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-medium">
+            <p className="text-xs text-[#b8a695] leading-relaxed font-medium">
               Automatically detect and attach telemetry hooks to all installed coding agents.
             </p>
-            <div className="p-2.5 rounded-xl bg-slate-950 border border-emerald-500/15 font-mono text-[11px] text-emerald-300 flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-[#120c09] border border-[#3d2b20] font-mono text-[11px] text-amber-300 flex items-center justify-between">
               <code>tokentrail hook --all</code>
               <button
                 onClick={() => copyToClipboard('tokentrail hook --all', 'step3')}
-                className="text-slate-400 hover:text-emerald-300 p-1"
+                className="text-[#a89786] hover:text-amber-300 p-1"
                 title="Copy command"
               >
-                {copiedKey === 'step3' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedKey === 'step3' ? <Check className="w-3.5 h-3.5 text-amber-400" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
             </div>
           </div>
@@ -134,12 +134,12 @@ export default function DocsPage() {
         <div className="space-y-6">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-              <Zap className="w-5 h-5 text-emerald-400" />
+              <Zap className="w-5 h-5 text-amber-400" />
               Integration Guides by Platform
             </h2>
 
             {/* Tab navigation */}
-            <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-[#0c1410] border border-emerald-500/20 overflow-x-auto">
+            <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-[#1c140f] border border-[#3d2b20] overflow-x-auto">
               {[
                 { id: 'cli', label: 'CLI & Terminal' },
                 { id: 'claude', label: 'Claude Code' },
@@ -152,8 +152,8 @@ export default function DocsPage() {
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
                     activeTab === tab.id
-                      ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-700/30'
-                      : 'text-slate-400 hover:text-emerald-200 hover:bg-emerald-950/30'
+                      ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md shadow-amber-900/40'
+                      : 'text-[#a89786] hover:text-amber-200 hover:bg-[#251a13]'
                   }`}
                 >
                   {tab.label}
