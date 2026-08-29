@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 import { apiFetch } from '@/lib/api';
+import { TokenTrendChart, TrendDataPoint } from '../../../components/TokenTrendChart';
 
 export default function SessionDetailPage() {
   const params = useParams();
@@ -132,6 +133,21 @@ export default function SessionDetailPage() {
             </div>
           </div>
         </div>
+
+        {/* Session Token Trajectory Chart */}
+        <TokenTrendChart
+          data={events.map((e: any, idx: number) => ({
+            date: `Step #${idx + 1}`,
+            inputTokens: e.usage?.inputTokens || 0,
+            outputTokens: e.usage?.outputTokens || 0,
+            cacheTokens: e.usage?.cacheReadTokens || 0,
+            cost: e.cost?.total || 0,
+            requests: 1,
+            milestone: e.model?.name ? `Step ${idx + 1}: ${e.model.name}` : undefined,
+          }))}
+          title="Session Token Accumulation Trajectory"
+          subtitle="Compounding token expansion and reasoning burn progression across session turns"
+        />
 
         {/* Chronological Event Timeline */}
         <div className="space-y-4">

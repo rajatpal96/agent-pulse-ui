@@ -323,20 +323,7 @@ export default function OverviewPage() {
           {/* Main Grid: Token Trend & Agent Breakdown */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Token & Cost Trend Chart */}
-            <div className="lg:col-span-2 p-6 rounded-2xl glass-panel glass-panel-hover space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-base font-bold text-white flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-amber-400" />
-                    Token Volume & Spend Trajectory
-                  </h3>
-                  <p className="text-xs text-[#b8a695] mt-0.5 font-medium">
-                    Prompt inputs vs generated completions vs cached prompt savings
-                  </p>
-                </div>
-              </div>
-              <TokenTrendChart data={data?.tokenTrend || []} />
-            </div>
+            <TokenTrendChart className="lg:col-span-2 glass-panel-hover" data={data?.tokenTrend || []} />
 
             {/* Usage by Agent Breakdown */}
             <div className="p-6 rounded-2xl glass-panel glass-panel-hover space-y-4">
