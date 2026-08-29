@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'TokenTrail Documentation & Integration Guide',
     description: 'Quickly connect your AI coding agents to stream sub-millisecond token and cost telemetry.',
-    url: 'https://tokentrail.xyz/docs',
+    url: 'https://www.tokentrail.xyz/docs',
   },
 };
 

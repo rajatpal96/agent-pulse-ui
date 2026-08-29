@@ -10,7 +10,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://tokentrail.xyz'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://www.tokentrail.xyz'),
   title: {
     default: 'TokenTrail | AI Agent Fleet Observability & Cost Intelligence Platform',
     template: '%s | TokenTrail',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     'AI spend burn rate',
     'Developer AI observability',
   ],
-  authors: [{ name: 'TokenTrail Team', url: 'https://tokentrail.xyz' }],
+  authors: [{ name: 'TokenTrail Team', url: 'https://www.tokentrail.xyz' }],
   creator: 'TokenTrail',
   publisher: 'TokenTrail',
   applicationName: 'TokenTrail',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'TokenTrail | AI Agent Usage & Observability Platform',
     description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and MCP observability.',
-    url: 'https://tokentrail.xyz',
+    url: 'https://www.tokentrail.xyz',
     siteName: 'TokenTrail',
     images: [
       {
@@ -90,33 +90,33 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://tokentrail.xyz/#organization',
+      '@id': 'https://www.tokentrail.xyz/#organization',
       name: 'TokenTrail',
-      url: 'https://tokentrail.xyz',
-      logo: 'https://tokentrail.xyz/icon.svg',
-      image: 'https://tokentrail.xyz/opengraph-image',
+      url: 'https://www.tokentrail.xyz',
+      logo: 'https://www.tokentrail.xyz/icon.svg',
+      image: 'https://www.tokentrail.xyz/opengraph-image',
       description: 'Unified AI coding-agent usage, token metrics, cost intelligence, and fleet observability platform.',
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://tokentrail.xyz/#website',
-      url: 'https://tokentrail.xyz',
+      '@id': 'https://www.tokentrail.xyz/#website',
+      url: 'https://www.tokentrail.xyz',
       name: 'TokenTrail',
       publisher: {
-        '@id': 'https://tokentrail.xyz/#organization',
+        '@id': 'https://www.tokentrail.xyz/#organization',
       },
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://tokentrail.xyz/sessions?q={search_term_string}',
+        target: 'https://www.tokentrail.xyz/sessions?q={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://tokentrail.xyz/#webapp',
+      '@id': 'https://www.tokentrail.xyz/#webapp',
       name: 'TokenTrail',
-      url: 'https://tokentrail.xyz',
-      image: 'https://tokentrail.xyz/opengraph-image',
+      url: 'https://www.tokentrail.xyz',
+      image: 'https://www.tokentrail.xyz/opengraph-image',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'macOS, Linux, Windows',
       description: 'Real-time observability, token burn tracking, prompt cache savings, and cost governance for AI coding agents including Claude Code, GitHub Copilot, Gemini, Codex, and Grok.',

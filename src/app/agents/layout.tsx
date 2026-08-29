@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Agent Fleet Observability | TokenTrail',
     description: 'Compare latency, error rates, prompt token volume, and estimated spend across all deployed coding assistants.',
-    url: 'https://tokentrail.xyz/agents',
+    url: 'https://www.tokentrail.xyz/agents',
   },
 };
 

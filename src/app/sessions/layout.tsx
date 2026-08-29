@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Agent Sessions Explorer | TokenTrail',
     description: 'Deep-dive into step durations, tool invocations, token costs, and full developer coding workflows.',
-    url: 'https://tokentrail.xyz/sessions',
+    url: 'https://www.tokentrail.xyz/sessions',
   },
 };
 

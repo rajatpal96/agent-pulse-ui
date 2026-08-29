@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'MCP Server Observability | TokenTrail',
     description: 'Real-time telemetry and tool latency analytics for Model Context Protocol servers.',
-    url: 'https://tokentrail.xyz/mcp',
+    url: 'https://www.tokentrail.xyz/mcp',
   },
 };
 

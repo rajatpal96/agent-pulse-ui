@@ -1,7 +1,12 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://tokentrail.xyz';
+  // Use canonical www domain matching Vercel's primary production domain
+  const rawBase = process.env.NEXT_PUBLIC_APP_URL || 'https://www.tokentrail.xyz';
+  const baseUrl = rawBase.replace(/\/+$/, '').includes('www.tokentrail.xyz')
+    ? rawBase.replace(/\/+$/, '')
+    : rawBase.replace('https://tokentrail.xyz', 'https://www.tokentrail.xyz');
+
   const currentDate = new Date();
 
   return [

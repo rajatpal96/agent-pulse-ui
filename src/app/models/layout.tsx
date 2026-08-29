@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Model & Token Efficiency Analytics | TokenTrail',
     description: 'Analyze prompt tokens, completion generation, reasoning overhead, and prompt caching savings across LLM providers.',
-    url: 'https://tokentrail.xyz/models',
+    url: 'https://www.tokentrail.xyz/models',
   },
 };
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Spend Governance & Budgets | TokenTrail',
     description: 'Real-time spend allocation by repository, model provider, and developer team with budget ceilings.',
-    url: 'https://tokentrail.xyz/budgets',
+    url: 'https://www.tokentrail.xyz/budgets',
   },
 };
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Workspace Settings | TokenTrail',
     description: 'Manage organization tokens, ingestion API keys, and notification webhooks.',
-    url: 'https://tokentrail.xyz/settings',
+    url: 'https://www.tokentrail.xyz/settings',
   },
 };
 
