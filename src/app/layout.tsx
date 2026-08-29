@@ -39,11 +39,29 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon', sizes: '48x48', type: 'image/png' },
+    ],
+    shortcut: '/icon.svg',
+    apple: [
+      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: 'TokenTrail | AI Agent Usage & Observability Platform',
     description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and MCP observability.',
     url: 'https://tokentrail.xyz',
     siteName: 'TokenTrail',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'TokenTrail AI Agent Observability',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
@@ -51,6 +69,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'TokenTrail | AI Agent Usage & Observability Platform',
     description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and MCP observability.',
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,
@@ -74,6 +93,8 @@ const jsonLd = {
       '@id': 'https://tokentrail.xyz/#organization',
       name: 'TokenTrail',
       url: 'https://tokentrail.xyz',
+      logo: 'https://tokentrail.xyz/icon.svg',
+      image: 'https://tokentrail.xyz/opengraph-image',
       description: 'Unified AI coding-agent usage, token metrics, cost intelligence, and fleet observability platform.',
     },
     {
@@ -95,6 +116,7 @@ const jsonLd = {
       '@id': 'https://tokentrail.xyz/#webapp',
       name: 'TokenTrail',
       url: 'https://tokentrail.xyz',
+      image: 'https://tokentrail.xyz/opengraph-image',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'macOS, Linux, Windows',
       description: 'Real-time observability, token burn tracking, prompt cache savings, and cost governance for AI coding agents including Claude Code, GitHub Copilot, Gemini, Codex, and Grok.',
@@ -121,6 +143,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-icon" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
