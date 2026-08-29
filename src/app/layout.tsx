@@ -3,8 +3,30 @@ import { Sidebar } from '../components/Sidebar';
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://tokentrail.xyz'),
-  title: 'TokenTrail | AI Agent Fleet Observability & Cost Intelligence Platform',
+  title: {
+    default: 'TokenTrail | AI Agent Fleet Observability & Cost Intelligence Platform',
+    template: '%s | TokenTrail',
+  },
   description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and fleet observability across Claude Code, GitHub Copilot, Gemini/Antigravity, Codex, and Grok.',
+  keywords: [
+    'AI agent observability',
+    'Token tracking',
+    'Claude Code tokens',
+    'GitHub Copilot telemetry',
+    'Gemini Antigravity token usage',
+    'AI cost intelligence',
+    'LLM token analytics',
+    'MCP server observability',
+    'Coding agents telemetry',
+    'Prompt cache savings',
+    'AI spend burn rate',
+  ],
+  authors: [{ name: 'TokenTrail Team', url: 'https://tokentrail.xyz' }],
+  creator: 'TokenTrail',
+  publisher: 'TokenTrail',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'TokenTrail | AI Agent Usage & Observability Platform',
     description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and MCP observability.',
@@ -12,6 +34,22 @@ export const metadata = {
     siteName: 'TokenTrail',
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TokenTrail | AI Agent Usage & Observability Platform',
+    description: 'Unified AI coding-agent usage, token metrics, cost intelligence, session timelines, and MCP observability.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
