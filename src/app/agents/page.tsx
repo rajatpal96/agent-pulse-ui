@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Navbar } from '../../components/Navbar';
 import {
   Bot,
@@ -14,40 +15,52 @@ import {
   Coins,
   ArrowUpRight,
   ShieldAlert,
+  ArrowRight,
+  Layers,
 } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 import { apiFetch } from '@/lib/api';
 
-const AGENT_BADGES: Record<string, { label: string; icon: any; gradient: string; tag: string }> = {
+const AGENT_BADGES: Record<string, { label: string; icon: any; gradient: string; tag: string; status: 'live' | 'in-progress'; statusText: string }> = {
   'claude-code': {
     label: 'Claude Code',
     icon: Terminal,
     gradient: 'from-amber-500/20 via-amber-500/5 to-transparent border-amber-500/30',
     tag: 'Autonomous Terminal CLI',
+    status: 'live',
+    statusText: 'Live Telemetry Publishing',
   },
   'github-copilot': {
     label: 'GitHub Copilot',
     icon: Code2,
     gradient: 'from-cyan-500/20 via-cyan-500/5 to-transparent border-cyan-500/30',
     tag: 'IDE Inline & Chat',
+    status: 'in-progress',
+    statusText: 'Pipeline In Progress',
   },
   'gemini-antigravity': {
     label: 'Gemini / Antigravity',
     icon: Sparkles,
     gradient: 'from-emerald-500/20 via-emerald-500/5 to-transparent border-emerald-500/30',
     tag: 'Autonomous Agentic IDE',
+    status: 'in-progress',
+    statusText: 'Pipeline In Progress',
   },
   codex: {
     label: 'Codex / OpenAI',
     icon: Bot,
     gradient: 'from-teal-500/20 via-teal-500/5 to-transparent border-teal-500/30',
     tag: 'Code Generation API',
+    status: 'in-progress',
+    statusText: 'Pipeline In Progress',
   },
   grok: {
     label: 'xAI Grok',
     icon: Flame,
     gradient: 'from-lime-500/20 via-lime-500/5 to-transparent border-lime-500/30',
     tag: 'Coding Intelligence',
+    status: 'in-progress',
+    statusText: 'Pipeline In Progress',
   },
 };
 
@@ -89,6 +102,32 @@ export default function AgentsPage() {
           </p>
         </div>
 
+        {/* Live vs In-Progress Fleet Banner */}
+        <div className="p-4 rounded-2xl bg-[#1c140f] border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400">
+              <Terminal className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-white flex items-center gap-2">
+                <span>Claude Code Telemetry Live & Publishing</span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">
+                  Active Feed
+                </span>
+              </div>
+              <p className="text-[11px] text-[#b8a695] mt-0.5">
+                Telemetry ingestion bridges for GitHub Copilot, Gemini / Antigravity, OpenAI Codex, xAI Grok, and Cursor are actively in progress.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/docs"
+            className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 font-mono text-xs font-semibold whitespace-nowrap transition-all"
+          >
+            Integration Roadmap →
+          </Link>
+        </div>
+
         {/* Agent Cards Grid */}
         {agents.length === 0 && !loading ? (
           <div className="p-12 text-center glass-panel rounded-2xl border border-emerald-500/15 text-emerald-400/60 font-mono">
@@ -102,6 +141,8 @@ export default function AgentsPage() {
                 icon: Bot,
                 gradient: 'from-emerald-950/40 via-emerald-950/10 to-transparent border-emerald-500/20',
                 tag: agent.agentType || 'Coding Agent',
+                status: 'in-progress' as const,
+                statusText: 'Pipeline In Progress',
               };
               const Icon = meta.icon;
               const errorRate = agent.totalRequests > 0 ? ((agent.errorCount / agent.totalRequests) * 100).toFixed(1) : '0.0';
@@ -118,10 +159,21 @@ export default function AgentsPage() {
                           <Icon className="w-6 h-6 text-emerald-400" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg text-white">{meta.label}</h3>
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-950/80 text-emerald-300 border border-emerald-500/20">
-                            {meta.tag}
-                          </span>
+                          <h3 className="font-bold text-lg text-white flex items-center gap-2">
+                            {meta.label}
+                          </h3>
+                          <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-950/80 text-emerald-300 border border-emerald-500/20">
+                              {meta.tag}
+                            </span>
+                            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-semibold border ${
+                              meta.status === 'live'
+                                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                                : 'bg-amber-500/15 text-amber-300 border-amber-500/30'
+                            }`}>
+                              {meta.statusText}
+                            </span>
+                          </div>
                         </div>
                       </div>
                       <div className="text-right">
@@ -171,7 +223,7 @@ export default function AgentsPage() {
                     </div>
                   </div>
 
-                  <div className="pt-2 border-t border-emerald-500/15 flex items-center justify-between text-[11px] text-slate-400">
+                    <div className="pt-2 border-t border-emerald-500/15 flex items-center justify-between text-[11px] text-slate-400">
                     <span>Models: <strong className="text-slate-200 font-mono">{agent.models?.slice(0, 2).join(', ') || 'Default'}</strong></span>
                     <span className="font-mono text-emerald-400">{agent.projects?.length || 1} repos</span>
                   </div>

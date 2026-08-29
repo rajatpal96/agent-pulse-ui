@@ -141,22 +141,33 @@ export default function DocsPage() {
             {/* Tab navigation */}
             <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-[#1c140f] border border-[#3d2b20] overflow-x-auto">
               {[
-                { id: 'cli', label: 'CLI & Terminal' },
-                { id: 'claude', label: 'Claude Code' },
-                { id: 'gemini', label: 'Gemini / Antigravity' },
-                { id: 'copilot', label: 'GitHub Copilot' },
-                { id: 'sdk', label: 'Node / Python SDK' },
+                { id: 'cli', label: 'CLI & Terminal', badge: 'Core' },
+                { id: 'claude', label: 'Claude Code', badge: 'Live', isLive: true },
+                { id: 'gemini', label: 'Gemini / Antigravity', badge: 'In Progress' },
+                { id: 'copilot', label: 'GitHub Copilot', badge: 'In Progress' },
+                { id: 'sdk', label: 'Node / Python SDK', badge: 'Beta' },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md shadow-amber-900/40'
                       : 'text-[#a89786] hover:text-amber-200 hover:bg-[#251a13]'
                   }`}
                 >
-                  {tab.label}
+                  <span>{tab.label}</span>
+                  <span
+                    className={`text-[9px] px-1.5 py-0.2 rounded font-mono font-bold uppercase ${
+                      tab.isLive
+                        ? 'bg-emerald-400 text-slate-950 shadow-[0_0_8px_rgba(52,211,153,0.6)]'
+                        : activeTab === tab.id
+                        ? 'bg-black/40 text-amber-200'
+                        : 'bg-[#251a13] text-[#8c7b6d]'
+                    }`}
+                  >
+                    {tab.badge}
+                  </span>
                 </button>
               ))}
             </div>

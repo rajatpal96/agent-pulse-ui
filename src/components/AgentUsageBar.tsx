@@ -16,13 +16,14 @@ interface AgentUsageBarProps {
   agents: AgentUsageItem[];
 }
 
-const AGENT_META: Record<string, { label: string; icon: any; color: string; bg: string; border: string }> = {
+const AGENT_META: Record<string, { label: string; icon: any; color: string; bg: string; border: string; isLive?: boolean }> = {
   'claude-code': {
     label: 'Claude Code',
     icon: Terminal,
     color: 'text-amber-400',
     bg: 'bg-amber-500/10',
     border: 'border-amber-500/30',
+    isLive: true,
   },
   'github-copilot': {
     label: 'GitHub Copilot',
@@ -64,7 +65,7 @@ export function AgentUsageBar({ agents }: AgentUsageBarProps) {
       {/* Progress Bar */}
       <div className="h-3 w-full rounded-full bg-slate-950 overflow-hidden flex p-0.5 border border-emerald-500/20">
         {agents.map((agent, idx) => {
-          const bgColors = ['bg-emerald-500', 'bg-teal-400', 'bg-cyan-400', 'bg-lime-400', 'bg-amber-400'];
+          const bgColors = ['bg-amber-400', 'bg-emerald-500', 'bg-teal-400', 'bg-cyan-400', 'bg-lime-400'];
           const colorClass = bgColors[idx % bgColors.length];
 
           return (
@@ -100,7 +101,18 @@ export function AgentUsageBar({ agents }: AgentUsageBarProps) {
                   <Icon className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-200">{meta.label}</div>
+                  <div className="font-semibold text-slate-200 flex items-center gap-2">
+                    <span>{meta.label}</span>
+                    {meta.isLive ? (
+                      <span className="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        LIVE
+                      </span>
+                    ) : (
+                      <span className="text-[9px] px-1.5 py-0.2 rounded font-mono bg-amber-500/10 text-amber-400/80 border border-amber-500/20">
+                        IN PROGRESS
+                      </span>
+                    )}
+                  </div>
                   <div className="text-[11px] text-slate-400 font-mono">
                     {formatNumber(agent.requestCount)} reqs • {formatNumber(agent.totalTokens)} tokens
                   </div>

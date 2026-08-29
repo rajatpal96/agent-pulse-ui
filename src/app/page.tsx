@@ -110,8 +110,8 @@ export default function OverviewPage() {
           {/* Main Hero Header */}
           <div className="text-center space-y-5 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-semibold shadow-[0_0_15px_rgba(245,158,11,0.15)]">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Live AI Token Usage & Cost Analytics Across Coding Agents</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Claude Code Telemetry Live & Publishing • Multi-Agent Pipeline In Progress</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
@@ -122,7 +122,7 @@ export default function OverviewPage() {
             </h1>
 
             <p className="text-sm sm:text-base text-[#d1c2b4] leading-relaxed max-w-2xl mx-auto font-normal">
-              Unified intelligence across <strong className="text-white">Claude Code</strong>, <strong className="text-white">GitHub Copilot</strong>, <strong className="text-white">Gemini / Antigravity</strong>, <strong className="text-white">Codex</strong>, and <strong className="text-white">Grok</strong>. Track real-time token trajectories, reasoning latencies, prompt caching savings, and session timelines.
+              Actively publishing live token & cost telemetry for <strong className="text-amber-300 font-semibold">Claude Code</strong>. Multi-agent ingestion pipeline is in progress for <strong className="text-white">GitHub Copilot</strong>, <strong className="text-white">Gemini / Antigravity</strong>, <strong className="text-white">OpenAI Codex</strong>, <strong className="text-white">xAI Grok</strong>, <strong className="text-white">Cursor</strong>, and <strong className="text-white">Windsurf</strong>.
             </p>
 
             {/* Action Buttons */}
@@ -223,7 +223,7 @@ export default function OverviewPage() {
               </div>
 
               <div className="p-3.5 rounded-2xl bg-[#120c09] border border-[#3d2b20] space-y-2">
-                <div className="text-[10px] font-mono text-amber-400 font-bold uppercase">3. Hook Agents</div>
+                <div className="text-[10px] font-mono text-amber-400 font-bold uppercase">3. Hook Claude Code</div>
                 <div className="font-mono text-[11px] text-slate-200 bg-black/60 p-2 rounded-lg border border-amber-500/10">
                   <code>tokentrail hook --all</code>
                 </div>
@@ -239,20 +239,32 @@ export default function OverviewPage() {
             </div>
           </div>
 
-          {/* Supported Agents Banner */}
-          <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400">
-            <span className="text-[#a89786] mr-1 font-medium">Supported Fleet:</span>
-            {[
-              { name: 'Claude Code', color: 'text-amber-300 bg-amber-500/10 border-amber-500/20' },
-              { name: 'GitHub Copilot', color: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20' },
-              { name: 'Gemini / Antigravity', color: 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20' },
-              { name: 'OpenAI Codex', color: 'text-teal-300 bg-teal-500/10 border-teal-500/20' },
-              { name: 'xAI Grok', color: 'text-lime-300 bg-lime-500/10 border-lime-500/20' },
-            ].map((agent) => (
-              <span key={agent.name} className={`px-2.5 py-1 rounded-lg border font-mono text-[11px] ${agent.color}`}>
-                {agent.name}
-              </span>
-            ))}
+          {/* Supported Agents Status Banner */}
+          <div className="flex flex-col items-center justify-center gap-2.5 text-xs text-slate-400 w-full max-w-4xl">
+            <div className="flex items-center gap-2 text-[#a89786] font-medium font-mono text-[11px]">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Fleet Telemetry Availability:</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl border border-amber-500/40 bg-amber-500/15 text-amber-300 font-mono text-[11px] shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-bold">Claude Code</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold uppercase tracking-wider ml-1">Live & Publishing</span>
+              </div>
+              {[
+                { name: 'GitHub Copilot', status: 'In Progress' },
+                { name: 'Gemini / Antigravity', status: 'In Progress' },
+                { name: 'OpenAI Codex', status: 'In Progress' },
+                { name: 'xAI Grok', status: 'In Progress' },
+                { name: 'Cursor / Windsurf', status: 'In Progress' },
+              ].map((agent) => (
+                <div key={agent.name} className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-[#3d2b20] bg-[#1a120d] text-[#b8a695] font-mono text-[11px]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500/60" />
+                  <span>{agent.name}</span>
+                  <span className="text-[9px] px-1 rounded bg-[#2a1d15] text-amber-400/80 font-medium ml-0.5">{agent.status}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ) : (
@@ -265,13 +277,13 @@ export default function OverviewPage() {
                 <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
                   Real-Time AI Token & Cost Tracker
                 </h2>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold font-mono px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 shadow-[0_0_12px_rgba(245,158,11,0.2)]">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  Live Telemetry Stream
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold font-mono px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shadow-[0_0_12px_rgba(16,185,129,0.2)]">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  Claude Code Telemetry Live
                 </span>
               </div>
               <p className="text-sm text-[#b8a695] mt-1.5 font-medium">
-                Live monitoring of token consumption, spend burn rate, and latency metrics across Claude Code, GitHub Copilot, Gemini, Codex & Grok.
+                Live metrics currently publishing for <strong className="text-amber-300">Claude Code</strong>. Telemetry ingestion pipelines in progress for GitHub Copilot, Gemini Antigravity, Codex & Grok.
               </p>
             </div>
 
